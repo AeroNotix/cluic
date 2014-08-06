@@ -16,7 +16,8 @@
   (let* ((parsed (parse-file file (cxml-dom:make-dom-builder)))
          (child-nodes (dom:child-nodes parsed)))
     (assert (= (length child-nodes) 1))
-    (map 'vector #'as-class child-nodes)))
+    (do-vector (elt child-nodes)
+      (as-class elt))))
 
 (defun from-string (str)
   )
